@@ -59,4 +59,10 @@ module.exports = [
     method: "post",
     cache: false,
   },
+  {
+    path: `${version}/contact`,
+    controllers: require("../controllers/Users").addContactManual,
+    method: "post",
+    cache: false,
+  },
 ];

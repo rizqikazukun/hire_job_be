@@ -392,6 +392,59 @@ module.exports = {
       });
     }
   },
+  // add contact
+  addContactManual: async (req, res) => {
+    try {
+      let request,
+        cache = false;
+      const target_id = req.params.id;
+      const requestBody = req.body;
+
+      const authorization = req.headers.authorization.slice(6).trim();
+      const { id, fullname } = jwt.verify(
+        authorization,
+        process.env.APP_SECRET_KEY
+      );
+
+      const template = fs.readFileSync("./template/contact.html", {
+        encoding: "utf-8",
+      });
+
+      const mailOptions = {
+        from: "bilkisismail07@gmail.com",
+        to: requestBody?.to,
+        subject: requestBody?.subject,
+        html: mustache.render(template, {
+          subject: requestBody?.subject,
+          body: requestBody?.description,
+          sender: fullname,
+          name: requestBody?.toName,
+        }),
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      await model.contact.create({
+        ...requestBody,
+        created_by: id,
+        user_id: target_id,
+      });
+
+      res.status(200).json({
+        cache,
+        status: "OK",
+        messages: "Contact success",
+        data: null,
+      });
+    } catch (error) {
+      res.status(error?.code ?? 500).json({
+        cache: error?.cache,
+        status: "ERROR",
+        messages: error?.message ?? "Something wrong in our server",
+        data: null,
+      });
+    }
+  },
   // detail account
   getContact: async (req, res) => {
     try {
