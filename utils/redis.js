@@ -4,10 +4,10 @@ const Redis = require("ioredis");
 let redis;
 
 redis = new Redis({
-  username: "default", // Render Redis name, red-xxxxxxxxxxxxxxxxxxxx
-  host: "containers-us-west-71.railway.app", // Render Redis hostname, REGION-redis.render.com
-  password: "Mz51ptUPntXMdzN1pMvN", // Provided password
-  port: 7752, // Connection port
+  username: process.env.REDIS_USER, 
+  host: process.env.REDIS_HOST,
+  password: process.env.REDIS_PASS, 
+  port: process.env.REDIS_PORT, 
   autoResubscribe: false,
   maxRetriesPerRequest: 5,
 });
