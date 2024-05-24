@@ -1,2 +1,2 @@
-const { server } = require("../bin/www");
-module.exports = { server };
+const srv = require("../bin/www");
+module.exports = srv;
