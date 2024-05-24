@@ -33,32 +33,6 @@ app.use(
   })
 );
 
-/* CORS Setting */
-if (env) {
-  app.use(cors());
-  // CORS TO ALL
-} else {
-  // Allowed Url Origins
-  const allowedOrigins = ["https://peworld-hiring-app.vercel.app"];
-  app.use(
-    cors({
-      origin: function (origin, callback) {
-        // (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-          const msg =
-            "The CORS policy for this site does not " +
-            "allow access from the specified Origin.";
-          return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-      },
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      credentials: true,
-    })
-  );
-}
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
