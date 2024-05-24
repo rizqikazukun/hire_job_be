@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var { app, server } = require("../app");
+const { app, server } = require("../app");
 var debug = require("debug")("express-starterkit:server");
 
 /**
@@ -77,3 +77,5 @@ function onListening() {
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
+
+module.exports = server;
