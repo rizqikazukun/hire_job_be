@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.16",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "sequelize-cli": "^6.6.2"
   }
 }

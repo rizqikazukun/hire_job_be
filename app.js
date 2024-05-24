@@ -39,7 +39,7 @@ if (env) {
   // CORS TO ALL
 } else {
   // Allowed Url Origins
-  const allowedOrigins = ["http://localhost:3000"];
+  const allowedOrigins = ["https://peworld-hiring-app.vercel.app"];
   app.use(
     cors({
       origin: function (origin, callback) {
