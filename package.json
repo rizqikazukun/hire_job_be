@@ -31,6 +31,7 @@
     "pg": "^8.8.0",
     "redis": "^4.5.1",
     "sequelize": "^6.6.5",
+    "uglify-js": "^3.17.4",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
