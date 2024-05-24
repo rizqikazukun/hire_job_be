@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const { app, server } = require("../app");
+var { app, server } = require("../app");
 var debug = require("debug")("express-starterkit:server");
 
 /**
