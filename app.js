@@ -3,7 +3,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-var http = require("http");
 var Sentry = require("@sentry/node");
 var Tracing = require("@sentry/tracing");
 var fileUpload = require("express-fileupload");
@@ -11,8 +10,11 @@ var compression = require("compression");
 require("dotenv").config();
 
 var app = express();
-var env = process.env.NODE_ENV || "development";
 var indexRouter = require("./routes/index");
+
+app.use(cors({
+  origin: process.env.FE_URL,
+}));
 
 // Compress all HTTP responses
 app.use(
